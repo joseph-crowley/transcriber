@@ -15,6 +15,7 @@ pip install setuptools-rust
 ```
 git clone git@github.com:joseph-crowley/transcriber.git
 cd transcriber
+mkdir uploads
 conda create -n transcribe -f environment.yml
 conda activate transcribe
 flask run
