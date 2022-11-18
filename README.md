@@ -13,7 +13,7 @@ NOTE: using conda environments, you'll want to do the pip steps _AFTER_ activati
 ### environment [ macOS ]
 ```
 brew install ffmpeg
-conda env create -n transcribe
+conda create -n transcribe
 conda activate transcribe
 conda install pip 
 pip install git+https://github.com/openai/whisper.git 
