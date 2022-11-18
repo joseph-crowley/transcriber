@@ -29,7 +29,7 @@ import subprocess
 from flask import flash, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
-ALLOWED_EXTENSIONS = {'mp3'}
+ALLOWED_EXTENSIONS = {'mp3', 'm4a'}
 UPLOAD_FOLDER = './uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
