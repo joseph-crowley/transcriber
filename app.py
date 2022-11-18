@@ -47,9 +47,14 @@ def greet_the_guest():
 
     additional_html = '' 
     for u in uploads:
-        additional_html += f'  <a href="http://127.0.0.1:5000/uploads/{u}">Listen to {u}</a> \n' 
-        additional_html += '<br/>'
-        additional_html += f'  <a href="http://127.0.0.1:5000/transcribe/{u}">Generate transcript of {u}</a> \n' 
+        additional_html += f'  <p>{u}' 
+        additional_html += f'  <a href="http://127.0.0.1:5000/uploads/{u}" target="_blank">Listen</a>' 
+        additional_html += f'  <a href="http://127.0.0.1:5000/transcribe/{u}" target="_blank">Read</a>'
+        additional_html += '</p>' 
+    
+    additional_html += '  <p>Or try '
+    additional_html += '  <a href="http://127.0.0.1:5000/upload" target="_blank">uploading a file</a>'
+    additional_html += ' </p>' 
 
     return fill_template(header="Transcribe some audio!", paragraph="Select from existing audio:", additional_html=additional_html)
 
