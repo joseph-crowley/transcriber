@@ -8,7 +8,7 @@ app = Flask(__name__)
 ## whisper setup
 
 import whisper
-model = whisper.load_model("base")
+model = whisper.load_model("tiny")
 
 ## GUI setup
 
@@ -20,13 +20,15 @@ def fill_template(header='',paragraph='',additional_html=''):
     result = html_template.replace("HEADING_REPLACETAG", header)
     result = result.replace("PARAGRAPH_REPLACETAG", paragraph)
     result = result.replace("ADDITIONALHTML_REPLACETAG", additional_html)
-    return result
+    with open('./html/tmp.html','w') as f:
+        f.write(result)
+    return render_template('./html/tmp.html')
 
 ## file setup
 
 import os
 import subprocess
-from flask import flash, request, redirect, url_for, send_from_directory
+from flask import flash, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = {'mp3', 'm4a'}
@@ -46,19 +48,19 @@ def greet_the_guest():
     uploads = subprocess.check_output('ls ./uploads', \
                                              shell=True).decode('ascii').split('\n')[:-1]
 
-    additional_html = '' 
+    additional_html = ''
     for u in uploads:
-        additional_html += f'  <p>{u}' 
+        additional_html += f'  <p>{u}'
         additional_html += \
-              f'  <a href="http://127.0.0.1:5000/uploads/{u}" target="_blank">Listen</a>' 
+              f'  <a href="http://127.0.0.1:5000/uploads/{u}" target="_blank">Listen</a>'
         additional_html += \
               f'  <a href="http://127.0.0.1:5000/transcribe/{u}" target="_blank">Read</a>'
-        additional_html += '</p>' 
-    
+        additional_html += '</p>'
+
     additional_html += '  <p>Or try '
     additional_html += \
            '  <a href="http://127.0.0.1:5000/upload" target="_blank">uploading a file</a>'
-    additional_html += ' </p>' 
+    additional_html += ' </p>'
 
     return fill_template(header="Transcribe some audio!", \
                          paragraph="Select from existing audio:", \
@@ -86,7 +88,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('download_file', name=filename))
-    
+
     # fill out template
 
     additional_html = '''
