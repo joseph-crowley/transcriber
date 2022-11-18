@@ -30,8 +30,8 @@ just a hello world page, placeholder for now.
 ### [upload](http://127.0.0.1:5000/upload)
 choose a file for upload. currently only supports mp3
 
-### [transcribe/<name>](http://127.0.0.1:5000/transcribe/audio.mp3)
+### [transcribe/\<name\>](http://127.0.0.1:5000/transcribe/audio.mp3)
 if _name_ is an mp3 file, it will transcribe the audio and display on the screen
 
-### [uploads/<name>](http://127.0.0.1:5000/uploads/audio.mp3)
+### [uploads/\<name\>](http://127.0.0.1:5000/uploads/audio.mp3)
 play the audio file
