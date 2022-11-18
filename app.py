@@ -46,7 +46,7 @@ def greet_the_guest():
 
 @app.route("/transcribe")
 def transcribe():
-    transcription = model.transcribe("audio.mp3")
+    transcription = model.transcribe(".uploads/audio.mp3")
     return fill_template(header="Transcription of Audio", paragraph=transcription['text'])
 
 @app.route('/upload', methods=['GET', 'POST'])
