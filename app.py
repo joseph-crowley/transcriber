@@ -22,9 +22,10 @@ def fill_template(header='',paragraph='',additional_html=''):
     result = result.replace("ADDITIONALHTML_REPLACETAG", additional_html)
     return result
 
-## file uploading setup
+## file setup
 
 import os
+import subprocess
 from flask import flash, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -42,7 +43,15 @@ def allowed_file(filename):
 
 @app.route("/")
 def greet_the_guest():
-    return fill_template(header="Just saying Hi", paragraph="Hello World")
+    uploads = subprocess.check_output('ls ./uploads', shell=True).decode('ascii').split('\n')[:-1]
+
+    additional_html = '' 
+    for u in uploads:
+        additional_html += f'  <a href="http://127.0.0.1:5000/uploads/{u}">Listen to {u}</a> \n' 
+        additional_html += '<br/>'
+        additional_html += f'  <a href="http://127.0.0.1:5000/transcribe/{u}">Generate transcript of {u}</a> \n' 
+
+    return fill_template(header="Transcribe some audio!", paragraph="Select from existing audio:", additional_html=additional_html)
 
 @app.route("/transcribe")
 def transcribe():
