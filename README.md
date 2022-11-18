@@ -1,6 +1,15 @@
 # transcriber
 transcribe audio using openai/whisper 
 
+#### dependencies 
+follow all of the steps in the [readme for whisper](https://github.com/openai/whisper.git)
+NOTE: if using conda environments, you'll want to do the pip steps _AFTER_ activating the transcribe environment.
+in short (on macOS):
+```
+brew install ffmpeg
+pip install git+https://github.com/openai/whisper.git 
+pip install setuptools-rust
+```
 
 ## use the app locally
 ```
