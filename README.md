@@ -24,10 +24,10 @@ then the app will run at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ## endpoints
 
 ### [/](http://127.0.0.1:5000) 
-just a hello world page, placeholder for now. 
+home page with links for the audio and transcripts of the files in /uploads 
 
 ### [upload](http://127.0.0.1:5000/upload)
-choose a file for upload. currently only supports mp3
+choose a file for upload. currently only supports mp3 and m4a
 
 ### [transcribe/\<name\>](http://127.0.0.1:5000/transcribe/audio.mp3)
 if _name_ is an mp3 file, it will transcribe the audio and display on the screen
